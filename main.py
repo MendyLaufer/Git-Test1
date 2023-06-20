@@ -1,4 +1,3 @@
-def Git_Test1
+x = ("Git-Test1")
 
-
-print ("Mendy Laufer")
+print ("Mendy Laufer " + x)
