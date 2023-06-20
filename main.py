@@ -1,3 +1,4 @@
-x = ("Git-Test1")
+x = ("Git-Test1 ")
+y = ("Mendy Laufer ")
 
-print ("Mendy Laufer " + x)
+print (y + x + "hi")
