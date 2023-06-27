@@ -22,10 +22,6 @@ class HrManagement:
         query = f"UPDATE employee SET role_id = {role_id} WHERE employee_id = {employee_id}"
         self.db.query_set(query)
 
-    def set_manager_id(self, employee_id: int, manager_id: int):
-        query = f"UPDATE employee SET manager_id = {manager_id} WHERE employee_id = {employee_id}"
-        self.db.query_set(query)
-
     def update_phone(self, employee_id: int, phone_number: str):
         query = f"UPDATE employee SET phone_number = '{phone_number}' WHERE employee_id = {employee_id}"
         self.db.query_set(query)
@@ -34,12 +30,18 @@ class HrManagement:
         query = f"UPDATE employee SET salary = {salary} WHERE employee_id = {employee_id}"
         self.db.query_set(query)
 
+    def set_department_id(self, employee_id: int, department_id: int):
+        query = f"UPDATE employee SET department_id = {department_id} WHERE employee_id = {employee_id}"
+        self.db.query_set(query)
+
+    def set_hub_id(self, employee_id: int, hub_id: int):
+        query = f"UPDATE employee SET hub_id = {hub_id} WHERE employee_id = {employee_id}"
+        self.db.query_set(query)
+
     def general_employees_sum(self):
         query = "SELECT SUM (salary) FROM employee"
         self.db.query_select(query)
 
-a = HrManagement()
-a.set_salary(209, 7500.0)
 
 
 
