@@ -1,20 +1,41 @@
 import pyodbc
 
-driver_name = 'SQL Server'
-server_name = 'EVYATAR'
-db_name = 'employee_db'
 
-conn_str = f"DRIVER={{{driver_name}}};SERVER={server_name};DATABASE={db_name};Trusted_Connection=yes;"
+class SqlQuery:
+    def __init__(self):
+        self.driver_name = 'SQL Server'
+        self.server_name = 'Evyatar\SQLEXPRESS01'
+        self.db_name = 'HR_DB'
+        self.conn = None
+        self.cursor1 = None
 
-conn = pyodbc.connect(conn_str)
-cursor = conn.cursor()
+    def connect(self):
+        conn_str = f"DRIVER={{{self.driver_name}}};SERVER={self.server_name};DATABASE={self.db_name};Trusted_Connection=yes;"
+        self.conn = pyodbc.connect(conn_str)
+        self.cursor1 = self.conn.cursor()
 
-query = 'SELECT * FROM Employee'  # Replace 'TableName' with the actual table name
+    def close_connection(self):
+        if self.cursor1:
+            self.cursor1.close()
+        if self.conn:
+            self.conn.commit()
+            self.conn.close()
 
-cursor.execute(query)
+    def query_set(self, query):
+        self.connect()
+        self.cursor1.execute(query)
+        self.conn.commit()
+        self.close_connection()
 
-for row in cursor:
-    print(row)
+    def query_select(self, query):
+        self.connect()
+        self.cursor1.execute(query)
+        for row in self.cursor1:
+            print(row)
+        self.close_connection()
 
-cursor.close()
-conn.close()
+
+
+
+
+

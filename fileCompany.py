@@ -1,25 +1,39 @@
+from fileEmployee import Employee
+from server_mss import SqlQuery
+
+
 class Company:
-    def __init__(self, ceo_name, cto_name, cfo_name, hubs_list, employees_list):
+    def __init__(self, ceo_name, cto_name, cfo_name):
         self.ceo_name = ceo_name
         self.cto_name = cto_name
         self.cfo_name = cfo_name
-        self.hubs_list = hubs_list
-        self.employees_list = employees_list
+        self.db = SqlQuery()
 
-    def setCeo_name(self, ceo_name):
-        self.ceo_name = ceo_name
+    def add_employee(self, employee):
+        query = f"INSERT INTO employee (employee_id, role_id, manager_id, first_name, last_name, email_address, phone_number, hire_date, salary) VALUES ({employee.employee_id}, {employee.role_id}, {employee.manager_id}, '{employee.first_name}', '{employee.last_name}', '{employee.email_address}', '{employee.phone_number}', '{employee.hire_date}', {employee.salary})"
+        self.db.query_set(query)
 
-    def setCto_name(self, cto_name):
-        self.cto_name = cto_name
+    def update_employee(self, employee):
+        query = f"UPDATE employee SET role_id = {employee.role_id}, manager_id = {employee.manager_id}, first_name = '{employee.first_name}', middle_name = '{employee.middle_name}', last_name = '{employee.last_name}', email_address = '{employee.email_address}', phone_number = '{employee.phone_number}', hire_date = '{employee.hire_date}', salary = {employee.salary} WHERE employee_id = {employee.employee_id}"
+        self.db.query_set(query)
 
-    def setCfo_name(self, cfo_name):
-        self.cfo_name = cfo_name
+    def delete_employee(self, employee_id):
+        query = f"DELETE FROM employee WHERE employee_id = {employee_id}"
+        self.db.query_set(query)
 
-    def addHubs_list(self, hubs):
-        self.hubs_list.extend(hubs)
+    def get_employee(self, employee_id):
+        query = f"SELECT * FROM employee WHERE employee_id = {employee_id}"
+        self.db.query_select(query)
 
-    def addEmployees_list(self, employees):
-        self.employees_list.extend(employees)
+    def general_employees_sum(self):
+        query = "SELECT COUNT(*) FROM employee"
+        self.db.query_select(query)
 
-    def gEmployees_sum(self):
-        return len(self.employees_list)
+
+
+
+company = Company("CEO Name", "CTO Name", "CFO Name")
+
+
+employee = Employee(1, 1, 1, "John", "Doe", "john@example.com", "123456789", "2023-06-27", 500.0)
+company.add_employee(employee)
