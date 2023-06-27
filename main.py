@@ -1,6 +1,6 @@
 from fileCompany import Company
 from fileEmployee import Employee
-from employee_manager import EmployeeManager
+from hrManagement import HrManagement
 
 
 
@@ -26,9 +26,17 @@ if number == 1:
                             department_id, hub_id)
 
         # Add employee to the company
-        company.add_employee(employee)
+        HrManagement.add_employee(employee)
 
         print("Employee added successfully.")
+
+    elif choice == 2:
+        # Get employee ID to delete
+        employee_id = int(input("Enter employee ID to delete: "))
+
+        # Delete employee from the company
+        hr_manager = HrManagement()
+        hr_manager.delete_employee(employee_id)
 
 elif number == 2:
     pass
