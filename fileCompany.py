@@ -1,5 +1,6 @@
 from fileEmployee import Employee
 from server_mss import SqlQuery
+from employee_manager import EmployeeManager
 
 
 class Company:
@@ -26,14 +27,12 @@ class Company:
         self.db.query_select(query)
 
     def general_employees_sum(self):
-        query = "SELECT COUNT(*) FROM employee"
+        query = "SELECT SUM (salary) FROM employee"
         self.db.query_select(query)
 
 
 
 
 company = Company("CEO Name", "CTO Name", "CFO Name")
-
-
-employee = Employee(1, 1, 1, "John", "Doe", "john@example.com", "123456789", "2023-06-27", 500.0)
+employee = Employee(209, 1, 1, "John", "Doe", "john@example.com", "123456789", "2023-06-27", 5000.0)
 company.add_employee(employee)
