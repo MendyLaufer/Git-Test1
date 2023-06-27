@@ -37,6 +37,35 @@ if number == 1:
         # Delete employee from the company
         hr_manager = HrManagement()
         hr_manager.delete_employee(employee_id)
+        print("Employee deleted successfully.")
+
+    elif choice == 3:
+        employee_id = int(input("Enter employee ID: "))
+        change_option = int(input(
+            "Choose the detail to change:\n1. Role ID\n2. Phone Number\n3. Salary\n4. Department ID\n5. Hub ID\n> "))
+
+        hr_manager = HrManagement()
+
+        if change_option == 1:
+            role_id = int(input("Enter new role ID: "))
+            hr_manager.set_role_id(employee_id, role_id)
+        elif change_option == 2:
+            phone_number = input("Enter new phone number: ")
+            hr_manager.update_phone(employee_id, phone_number)
+        elif change_option == 3:
+            salary = float(input("Enter new salary: "))
+            hr_manager.set_salary(employee_id, salary)
+        elif change_option == 4:
+            department_id = int(input("Enter new department ID: "))
+            hr_manager.set_department_id(employee_id, department_id)
+        elif change_option == 5:
+            hub_id = int(input("Enter new hub ID: "))
+            hr_manager.set_hub_id(employee_id, hub_id)
+        else:
+            print("Invalid option.")
+
+        print("Employee details updated successfully.")
+
 
 elif number == 2:
     pass
