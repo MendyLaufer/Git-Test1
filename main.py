@@ -98,6 +98,7 @@ while True:
             hr.add_hub(hub)
         elif choice1 == 2:
             manager = int(input("Please enter manager id:"))
+            pass
 
     else:
         print("Invalid number. Please enter a number between 1 and 3.")
