@@ -1,6 +1,7 @@
 from fileEmployee import Employee
 from server_mss import SqlQuery
 from hrManagement import HrManagement
+from fileHub import Hub
 
 
 class Company:
@@ -8,6 +9,9 @@ class Company:
         self.ceo_name = ceo_name
         self.cto_name = cto_name
         self.cfo_name = cfo_name
+        self.db = SqlQuery()
+
+
 
 
 
