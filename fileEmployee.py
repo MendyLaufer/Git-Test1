@@ -26,8 +26,8 @@ class Employee:
 
         if self.role_id is not None:
             query = f"SELECT min_salary, max_salary FROM Role WHERE role_id = {self.role_id}"
-            self.db.cursor1.execute(query)
-            role_row = self.db.cursor1.fetchone()
+            self.db.query_select(query)
+            role_row = self.db.cursor.fetchone()
 
             if role_row:
                 min_salary = role_row.min_salary
@@ -40,15 +40,15 @@ class Employee:
 
     def is_employee_exists(self, employee_id: int) -> bool:
         query = f"SELECT employee_id FROM employee WHERE employee_id = {employee_id}"
-        self.db.cursor1.execute(query)
-        employee_row = self.db.cursor1.fetchone()
+        self.db.query_select(query)
+        employee_row = self.db.cursor.fetchone()
         return employee_row is not None
 
     def set_salary(self, employee_id: int, salary: float):
         if self.is_employee_exists(employee_id):
             role_query = f"SELECT min_salary, max_salary FROM Role WHERE role_id = {self.role_id}"
-            self.db.cursor1.execute(role_query)
-            role_row = self.db.cursor1.fetchone()
+            self.db.query_select(role_query)
+            role_row = self.db.cursor.fetchone()
 
             if role_row:
                 min_salary = role_row.min_salary
@@ -74,8 +74,8 @@ class Employee:
     def set_role_id(self, employee_id: int, role_id: int):
         if self.is_employee_exists(employee_id):
             role_query = f"SELECT role_id FROM Role WHERE role_id = {role_id}"
-            self.db.cursor1.execute(role_query)
-            role_row = self.db.cursor1.fetchone()
+            self.db.query_select(role_query)
+            role_row = self.db.cursor.fetchone()
 
             if role_row:
                 query = f"UPDATE employee SET role_id = {role_id} WHERE employee_id = {employee_id}"
@@ -89,8 +89,8 @@ class Employee:
     def set_department_id(self, employee_id: int, department_id: int):
         if self.is_employee_exists(employee_id):
             department_query = f"SELECT department_id FROM department WHERE department_id = {department_id}"
-            self.db.cursor1.execute(department_query)
-            department_row = self.db.cursor1.fetchone()
+            self.db.query_select(department_query)
+            department_row = self.db.cursor.fetchone()
 
             if department_row:
                 query = f"UPDATE employee SET department_id = {department_id} WHERE employee_id = {employee_id}"
@@ -104,10 +104,3 @@ class Employee:
     def set_hub_id(self, employee_id: int, hub_id: int):
         query = f"UPDATE employee SET hub_id = {hub_id} WHERE employee_id = {employee_id}"
         self.db.query_set(query)
-        
-
-
-
-
-
-
