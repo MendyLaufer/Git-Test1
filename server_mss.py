@@ -10,7 +10,8 @@ class SqlQuery:
         self.cursor = None
 
     def connect(self):
-        conn_str = f"DRIVER={{{self.driver_name}}};SERVER={self.server_name};DATABASE={self.db_name};Trusted_Connection=yes;"
+        conn_str = f"DRIVER={{{self.driver_name}}};SERVER={self.server_name};" \
+                   f"DATABASE={self.db_name};Trusted_Connection=yes;"
         self.conn = pyodbc.connect(conn_str)
         self.cursor = self.conn.cursor()
 
@@ -32,4 +33,4 @@ class SqlQuery:
         self.cursor.execute(query)
         for row in self.cursor:
             print(row)
-        # Don't close the connection here
+

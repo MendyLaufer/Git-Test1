@@ -38,12 +38,12 @@ class Manager(Employee):
                 f"employee_id = {self.employee_id} WHERE manager_id = {self.manager_id}"
         self.db.query_set(query)
 
-    def set_department_id(self, employee_id: int, department_id: int):
+    def set_department_id_manager(self, employee_id: int, department_id: int):
         super().set_department_id(employee_id, department_id)
         query = f"UPDATE managers SET department_id = {department_id} WHERE manager_id = {employee_id}"
         self.db.query_set(query)
 
-    def set_hub_id(self, employee_id: int, hub_id: int):
+    def set_hub_id_manager(self, employee_id: int, hub_id: int):
         super().set_hub_id(employee_id, hub_id)
         query = f"UPDATE managers SET hub_id = {hub_id} WHERE manager_id = {employee_id}"
         self.db.query_set(query)

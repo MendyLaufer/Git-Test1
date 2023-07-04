@@ -8,7 +8,6 @@ class HrManagement:
         self.db = SqlQuery()
 
     def add_manager(self, manager: Manager):
-        # if manager.manager_id is None:
         self.add_employee(manager)
         print("Manager added successfully.")
 

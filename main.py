@@ -8,7 +8,7 @@ from fileHub import Hub
 company = Company("CEO Name", "CTO Name", "CFO Name")
 number = int(input("For Employees Management Access Press: 1 \nFor Budgets Management Access Press: 2 \n"
                    "For Hubs and Departments Management Access Press: 3\n> "))
-
+hr_manager = HrManagement()
 while True:
     if number == 1:
         choice = int(input("to add employee press 1:\nto delete employee press 2:\nto change employee's details press 3:\n"
@@ -29,14 +29,12 @@ while True:
             employee = Employee(employee_id, role_id, first_name, last_name, email_address, phone_number, hire_date, salary,
                                 department_id, hub_id)
 
-            hr_manager = HrManagement()
             hr_manager.add_employee(employee)
             print("Employee added successfully.")
 
         elif choice == 2:
             employee_id = int(input("Enter employee ID to delete: "))
 
-            hr_manager = HrManagement()
             hr_manager.delete_employee(employee_id)
             print("Employee deleted successfully.")
 
@@ -45,9 +43,7 @@ while True:
             change_option = int(input("Choose the detail to change:\n1. Role ID\n2. Phone Number\n3. Salary\n4. "
                                       "Department ID\n5. Hub ID\n> "))
 
-            # employee_id = int(input("Enter employee ID: "))
             employee = Employee(employee_id)
-            # change_option = int(input("Enter the change option (1-5): "))
             if change_option == 1:
                 role_id = int(input("Enter new role ID: "))
                 employee.set_role_id(employee_id, role_id)
@@ -69,7 +65,6 @@ while True:
 
         elif choice == 4:
             employee_id = int(input("Enter employee ID: "))
-            hr_manager = HrManagement()
             hr_manager.get_employee(employee_id)
 
         else:
@@ -79,7 +74,6 @@ while True:
         choice = int(input("to print general employees sum press 1:\n to print the sum of employee in role press 2:\n"))
 
         if choice == 1:
-            hr_manager = HrManagement()
             hr_manager.general_employees_sum()
 
         elif choice == 2:
@@ -116,13 +110,11 @@ while True:
         elif choice1 == 3:
             department_id = int(input("Enter department ID: "))
             department_name = input("Enter department name: ")
-            hr_manager = HrManagement()
             hr_manager.add_department(department_id, department_name)
             print("Department added successfully.")
 
         elif choice1 == 4:
             department_id = int(input("Enter department ID: "))
-            hr_manager = HrManagement()
             hr_manager.remove_department(department_id)
             print("Department removed successfully.")
 

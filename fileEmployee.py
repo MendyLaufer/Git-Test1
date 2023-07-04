@@ -21,6 +21,7 @@ class Employee:
         self.hire_date = hire_date
         self.department_id = department_id
         self.hub_id = hub_id
+        self.salary = salary
 
         self.db = SqlQuery()
 
